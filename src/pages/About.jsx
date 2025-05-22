@@ -1,190 +1,137 @@
-import React from "react";
-import { motion } from "framer-motion";
-import {
-  FaHtml5,
-  FaCss3Alt,
-  FaJs,
-  FaReact,
-  FaNodeJs,
-  FaGitAlt,
-  FaJava,
-} from "react-icons/fa";
-import { SiTailwindcss, SiMongodb, SiExpress } from "react-icons/si";
+import React, { useEffect, useState } from "react";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const About = () => {
-  return (
-    <section id="about" className="px-6 py-20 bg-gray-900 text-white">
-      <div className="max-w-6xl mx-auto">
-        {/* Title */}
-        <motion.h2
-          className="text-4xl font-bold text-center mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          About Me
-        </motion.h2>
+  const [showCertificates, setShowCertificates] = useState(false);
+  const [showAchievements, setShowAchievements] = useState(false);
+  const [showExtra, setShowExtra] = useState(false);
 
-        {/* About Cards */}
-        <div className="grid md:grid-cols-3 gap-8">
+  useEffect(() => {
+    AOS.init({ duration: 1000 });
+  }, []);
+
+  useEffect(() => {
+    AOS.refresh();
+  }, [showCertificates, showAchievements, showExtra]);
+
+  return (
+    <section id="about" className="py-20 px-6 text-white">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl font-bold text-center mb-12" data-aos="fade-up">
+          About Me
+        </h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
           {/* Certifications */}
-          <motion.div
-            className="bg-gray-800 p-6 rounded-lg shadow-lg"
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5 }}
+          <div
+            className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition"
+            data-aos="fade-up"
           >
-            <h3 className="text-xl font-semibold mb-4 text-cyan-400">
-              📜 Certifications
+            <h3 className="text-2xl font-bold mb-4 text-cyan-400">
+              Certifications
             </h3>
-            <p className="text-sm text-gray-300">
-              {/* Add your certifications here */}
-              - Full Stack Web Development by XYZ Institute
-              <br />
-              - React Mastery Bootcamp – Udemy
-              <br />- Java Foundations – Oracle
+            <p className="text-lg text-gray-300 mb-4">
+              Certified in modern web technologies from reputed platforms.
             </p>
-          </motion.div>
+            {showCertificates && (
+              <ul className="list-disc text-gray-300 space-y-2 pl-5">
+                <li>TCS iON Career Edge - Young Professional with TCS iON.</li>
+                <li>The Complete 2022 Web Development Bootcamp with Udemy.</li>
+                <li>MongoDB & Node.js under Google Developer Group.</li>
+                <li>
+                  HTML, CSS & Bootstrap under Microsoft Learn Student
+                  Ambassador.
+                </li>
+                <li>
+                  Hotstar Clone using HTML, CSS and Bootstrap under Microsoft
+                  Learn Student Ambassador.
+                </li>
+              </ul>
+            )}
+            <button
+              onClick={() => setShowCertificates(!showCertificates)}
+              className="mt-4 bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-2 rounded-full font-medium"
+            >
+              {showCertificates ? "Show Less" : "Show More"}
+            </button>
+          </div>
 
           {/* Achievements */}
-          <motion.div
-            className="bg-gray-800 p-6 rounded-lg shadow-lg"
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+          <div
+            className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition"
+            data-aos="fade-up"
+            data-aos-delay="200"
           >
-            <h3 className="text-xl font-semibold mb-4 text-cyan-400">
-              🏆 Achievements
+            <h3 className="text-2xl font-bold mb-4 text-cyan-400">
+              Achievements
             </h3>
-            <p className="text-sm text-gray-300">
-              {/* Add your achievements here */}
-              - Built a full-fledged MERN stack college chatbot
-              <br />
-              - 1st place in inter-college hackathon 2024
-              <br />- Top performer in Java coding competition
+            <p className="text-lg text-gray-300 mb-4">
+              Acknowledgements and presentations that reflect growth and
+              innovation.
             </p>
-          </motion.div>
+            {showAchievements && (
+              <ul className="list-disc text-gray-300 space-y-2 pl-5">
+                <li>
+                  Letter of Acknowledgment: Got an acknowledgment letter for
+                  creating the project “Faculty Feedback Management System” that
+                  is currently live at Maharaja Surajmal Institute, New Delhi.
+                </li>
+                <li>
+                  Review Paper: Presented research paper on “AI-Driven Student
+                  Assistance: How Chatbots Are Revolutionizing Education” in
+                  National Conference on Technological Advancements in Academia
+                  Industry 4.0 at Indira College of Engineering and Management,
+                  Pune.
+                </li>
+              </ul>
+            )}
+            <button
+              onClick={() => setShowAchievements(!showAchievements)}
+              className="mt-4 bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-2 rounded-full font-medium"
+            >
+              {showAchievements ? "Show Less" : "Show More"}
+            </button>
+          </div>
 
           {/* Extra-Curricular Activities */}
-          <motion.div
-            className="bg-gray-800 p-6 rounded-lg shadow-lg"
-            whileInView={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+          <div
+            className="bg-gray-800 p-6 rounded-lg shadow-lg hover:scale-105 transition"
+            data-aos="fade-up"
+            data-aos-delay="400"
           >
-            <h3 className="text-xl font-semibold mb-4 text-cyan-400">
-              🎨 Extra-Curricular
+            <h3 className="text-2xl font-bold mb-4 text-cyan-400">
+              Extra-Curricular
             </h3>
-            <p className="text-sm text-gray-300">
-              {/* Add your activities here */}
-              - Guitarist in college band
-              <br />
-              - Cricket team captain
-              <br />- Volunteer at tech fests and seminars
+            <p className="text-lg text-gray-300 mb-4">
+              From hackathons to cultural events – I stay actively involved.
             </p>
-          </motion.div>
+            {showExtra && (
+              <ul className="list-disc text-gray-300 space-y-2 pl-5">
+                <li>
+                  Hackathons: Participated in Rajasthan IT Hackathon 2023.
+                </li>
+                <li>
+                  Event Coordination: Served as Event Coordinator for an event
+                  of CSI (Computer Society of India) in Maharaja Surajmal Institute.
+                </li>
+                <li>
+                  Singing Participant – Kalavishkar 2025, ICEM
+                </li>
+                <li>
+                  Dance Participant – Gusto 2025, Indira University:
+                  Participated in the group dance event during Gusto 2025.
+                </li>
+              </ul>
+            )}
+            <button
+              onClick={() => setShowExtra(!showExtra)}
+              className="mt-4 bg-cyan-500 hover:bg-cyan-600 text-white px-5 py-2 rounded-full font-medium"
+            >
+              {showExtra ? "Show Less" : "Show More"}
+            </button>
+          </div>
         </div>
-
-        {/* Skills */}
-        <motion.div
-          className="mt-16"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h3 className="text-2xl font-semibold mt-12 mb-6">Skills</h3>
-
-          {/* Programming Languages */}
-          <div className="mb-8">
-            <h4 className="text-xl font-semibold mb-4">
-              Programming Languages
-            </h4>
-            <div className="flex flex-wrap gap-6">
-              <img src="/icons/c.svg" alt="C" className="w-12 h-12" />
-              <img src="/icons/cpp.svg" alt="C++" className="w-12 h-12" />
-              <FaJava className="text-white-400 text-9xl" title="Java" />
-            </div>
-          </div>
-
-          {/* Front-End Development */}
-          <div className="mb-8">
-            <h4 className="text-xl font-semibold mb-4">
-              Front-End Development
-            </h4>
-            <div className="flex flex-wrap gap-6">
-              <img src="/icons/html.png" alt="HTML" className="w-12 h-12" />
-              <img src="/icons/css.png" alt="CSS" className="w-12 h-12" />
-              <img
-                src="/icons/javascript.png"
-                alt="JavaScript"
-                className="w-12 h-12"
-              />
-              <img
-                src="/icons/tailwind.png"
-                alt="Tailwind CSS"
-                className="w-12 h-12"
-              />
-              <FaReact className="text-cyan-400 text-9xl" />
-            </div>
-          </div>
-
-          {/* Back-End Development */}
-          <div className="mb-8">
-            <h4 className="text-xl font-semibold mb-4">Back-End Development</h4>
-            <div className="flex flex-wrap gap-6">
-              <img src="/icons/node.png" alt="Node.js" className="w-12 h-12" />
-              <img
-                src="/icons/react.png"
-                alt="React.js"
-                className="w-12 h-12"
-              />
-            </div>
-          </div>
-
-          {/* Databases */}
-          <div className="mb-8">
-            <h4 className="text-xl font-semibold mb-4">Databases</h4>
-            <div className="flex flex-wrap gap-6">
-              <img
-                src="/icons/mongodb.png"
-                alt="MongoDB"
-                className="w-12 h-12"
-              />
-              <img src="/icons/mysql.png" alt="MySQL" className="w-12 h-12" />
-              <img
-                src="/icons/postgresql.png"
-                alt="PostgreSQL"
-                className="w-12 h-12"
-              />
-            </div>
-          </div>
-
-          {/* Version Control & Tools */}
-          <div className="mb-8">
-            <h4 className="text-xl font-semibold mb-4">
-              Version Control & Tools
-            </h4>
-            <div className="flex flex-wrap gap-6">
-              <img src="/icons/git.png" alt="Git" className="w-12 h-12" />
-              <img src="/icons/github.png" alt="GitHub" className="w-12 h-12" />
-              <img
-                src="/icons/vscode.png"
-                alt="Visual Studio Code"
-                className="w-12 h-12"
-              />
-              <img
-                src="/icons/intellij.png"
-                alt="IntelliJ IDEA"
-                className="w-12 h-12"
-              />
-              <img
-                src="/icons/postman.png"
-                alt="Postman"
-                className="w-12 h-12"
-              />
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
